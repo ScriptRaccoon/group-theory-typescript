@@ -1,0 +1,21 @@
+{
+	"name": "group-theory-typescript",
+	"version": "1.0.0",
+	"description": "",
+	"main": "group-theory.js",
+	"type": "module",
+	"scripts": {
+		"start": "node dist/bundle.js",
+		"build": "esbuild src/index.ts --bundle --minify --outfile=dist/bundle.js",
+		"dev:ts": "esbuild src/index.ts --bundle --watch --outfile=dist/bundle.js",
+		"dev:node": "nodemon dist/bundle.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"esbuild": "^0.18.8",
+		"nodemon": "^1.14.9",
+		"typescript": "^5.1.3"
+	}
+}
