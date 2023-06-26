@@ -1,9 +1,14 @@
 import { partialZ } from "./additive-group";
-const G = partialZ(10);
+const G = partialZ(5);
 console.assert(G.isClosed === false);
 console.assert(G.isCommutative === true);
 console.assert(G.compose(1, 2) === 3);
-console.assert(G.order === 10);
+console.assert(G.order === 5);
+
+import { Zmod2 } from "./Z2";
+console.assert(Zmod2.isClosed === true);
+console.assert(Zmod2.isCommutative === true);
+console.assert(Zmod2.compose(1, 1) === 0);
 
 import { additiveGroupModulo } from "./modulo-group";
 const Zmod7 = additiveGroupModulo(7);
