@@ -8,7 +8,7 @@ interface GroupData<X> {
 	compose: (a: X, b: X) => X;
 }
 
-export class Group<X> {
+export class Group<X> implements GroupData<X> {
 	public set: SetWithEquality<X>;
 	public unit: X;
 	public inverse: (a: X) => X;

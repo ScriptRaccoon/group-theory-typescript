@@ -32,3 +32,11 @@ console.assert(Zmod7_x_S3.isCommutative === false);
 console.assert(Zmod7_x_S3.isClosed === true);
 console.assert(Zmod7_x_S3.order === 42);
 console.assert(Zmod7_x_S3.maximalElementOrder === 21);
+
+import { signum } from "./signum";
+console.assert(signum.isClosed === true);
+console.assert(signum.isHomomorphism === true);
+console.assert(
+	S3.elements.filter((a) => signum.map(a) === Zmod2.unit).length ===
+		3
+);
