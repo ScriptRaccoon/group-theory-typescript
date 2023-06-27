@@ -109,6 +109,7 @@ export class Group<X> implements GroupData<X> {
 
 	get isGroup(): boolean {
 		return (
+			this.isClosed &&
 			this.isAssociative &&
 			this.hasUnit &&
 			this.hasInverseElements
