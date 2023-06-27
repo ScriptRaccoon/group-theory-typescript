@@ -37,9 +37,7 @@ export class HomomorphismOfGroups<X, Y>
 
 	get isClosed(): boolean {
 		return this.source.elements.every((a) =>
-			this.target.elements.some((b) =>
-				this.target.set.equal(this.map(a), b)
-			)
+			this.target.set.contains(this.map(a))
 		);
 	}
 }

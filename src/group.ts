@@ -68,34 +68,19 @@ export class Group<X> implements GroupData<X> {
 		return this.elements.every(this.hasInverseElement.bind(this));
 	}
 
-	isCommutingPair([a, b]: [X, X]) {
-		return this.set.equal(this.compose(a, b), this.compose(b, a));
-	}
-
-	get isCommutative(): boolean {
-		const pairs = squareOfArray(this.elements);
-		return pairs.every(this.isCommutingPair.bind(this));
-	}
-
 	get isClosedUnderUnit(): boolean {
-		return this.elements.some((a) =>
-			this.set.equal(a, this.unit)
-		);
+		return this.set.contains(this.unit);
 	}
 
 	get isClosedUnderComposition(): boolean {
 		return squareOfArray(this.elements).every(([a, b]) =>
-			this.elements.some((c) =>
-				this.set.equal(this.compose(a, b), c)
-			)
+			this.set.contains(this.compose(a, b))
 		);
 	}
 
 	get isClosedUnderInverses(): boolean {
 		return this.elements.every((a) =>
-			this.elements.some((b) =>
-				this.set.equal(this.inverse(a), b)
-			)
+			this.set.contains(this.inverse(a))
 		);
 	}
 
@@ -114,6 +99,15 @@ export class Group<X> implements GroupData<X> {
 			this.hasUnit &&
 			this.hasInverseElements
 		);
+	}
+
+	isCommutingPair([a, b]: [X, X]) {
+		return this.set.equal(this.compose(a, b), this.compose(b, a));
+	}
+
+	get isCommutative(): boolean {
+		const pairs = squareOfArray(this.elements);
+		return pairs.every(this.isCommutingPair.bind(this));
 	}
 
 	get order(): number {
