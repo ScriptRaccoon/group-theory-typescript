@@ -54,7 +54,7 @@ export class Group<X> implements GroupData<X> {
 	hasInverseElement(a: X): boolean {
 		return (
 			this.set.equal(
-				this.compose(a, this.inverse(a)),
+				this.compose(this.inverse(a), a),
 				this.unit
 			) &&
 			this.set.equal(
