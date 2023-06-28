@@ -10,9 +10,7 @@ export function symmetricGroup(n: number): Group<number[]> {
 		set: new SetOfTuples(listOfPermutations(n)),
 		unit: interval(n),
 		inverse: (a) =>
-			interval(n).map((val) =>
-				a.findIndex((_val) => _val === val)
-			),
-		compose: (a, b) => a.map((c) => b[c]),
+			interval(n).map((y) => a.findIndex((_y) => _y === y)),
+		compose: (a, b) => b.map((y) => a[y]),
 	});
 }

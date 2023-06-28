@@ -9,8 +9,9 @@ console.assert(Zmod2.compose(1, 1) === 0);
 
 import { additiveGroupModulo } from "./modulo-group";
 const Zmod7 = additiveGroupModulo(7);
+console.assert(Zmod7.order === 7);
+console.assert(Zmod7.compose(5, 3) === 1);
 console.assert(Zmod7.isCommutative === true);
-console.assert(Zmod7.compose(5, 3) == 1);
 
 import { symmetricGroup } from "./symmetric-group";
 const S3 = symmetricGroup(3);
