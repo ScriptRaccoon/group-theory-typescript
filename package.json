@@ -2,7 +2,7 @@
 	"name": "group-theory-typescript",
 	"version": "1.0.0",
 	"description": "",
-	"main": "group-theory.js",
+	"main": "src/index.ts",
 	"type": "module",
 	"scripts": {
 		"start": "node dist/bundle.js",
