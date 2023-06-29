@@ -22,6 +22,12 @@ console.assert(S3.elementOrder(S3.unit) === 0);
 console.assert(S3.elementOrder([1, 0, 2]) === 2);
 console.assert(S3.maximalElementOrder === 3);
 
+import { KleinFourGroup } from "./klein-four-group";
+console.assert(KleinFourGroup.order === 4);
+console.assert(KleinFourGroup.isCommutative === true);
+console.assert(KleinFourGroup.compose("a", "b") === "c");
+console.assert(KleinFourGroup.maximalElementOrder === 2);
+
 import { productOfGroups } from "./products-of-groups";
 const Zmod7_x_S3 = productOfGroups(Zmod7, S3);
 console.assert(Zmod7_x_S3.isCommutative === false);

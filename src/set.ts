@@ -21,6 +21,12 @@ export class SetOfTuples extends SetWithEquality<number[]> {
 	}
 }
 
+export class SetOfStrings extends SetWithEquality<string> {
+	equal(a: string, b: string): boolean {
+		return a === b;
+	}
+}
+
 export function ProductOfSets<X, Y>(
 	A: SetWithEquality<X>,
 	B: SetWithEquality<Y>
