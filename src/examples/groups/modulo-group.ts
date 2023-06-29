@@ -1,6 +1,6 @@
-import { Group } from "./group";
-import { SetOfNumbers } from "./set";
-import { interval } from "./utils";
+import { Group } from "../../concepts/group";
+import { interval } from "../../utils";
+import { SetOfNumbers } from "../sets/index";
 
 export function additiveGroupModulo(n: number): Group<number> {
 	if (n <= 0) throw "Only positive numbers are allowed";

@@ -1,5 +1,5 @@
-import { Group } from "./group";
-import { SetOfNumbers } from "./set";
+import { Group } from "../../concepts/group";
+import { SetOfNumbers } from "../sets/index";
 
 export const S = new Group<number>({
 	set: new SetOfNumbers([-1, 1]),

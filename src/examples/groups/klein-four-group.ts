@@ -1,5 +1,5 @@
-import { Group } from "./group";
-import { SetOfStrings } from "./set";
+import { Group } from "../../concepts/group";
+import { SetOfStrings } from "../sets/index";
 
 export const KleinFourGroup = new Group<string>({
 	set: new SetOfStrings(["e", "a", "b", "c"]),

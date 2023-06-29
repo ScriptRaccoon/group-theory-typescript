@@ -1,6 +1,6 @@
-import { Group } from "./group";
-import { SetOfTuples } from "./set";
-import { interval, listOfPermutations } from "./utils";
+import { Group } from "../../concepts/group";
+import { interval, listOfPermutations } from "../../utils";
+import { SetOfTuples } from "../sets/index";
 
 export function symmetricGroup(n: number): Group<number[]> {
 	if (n < 0) throw "Only non-negative numbers are allowed";

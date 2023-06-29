@@ -1,5 +1,5 @@
 import { Group } from "./group";
-import { squareOfArray } from "./utils";
+import { squareOfArray } from "../utils";
 
 interface HomomorphismOfGroupsData<X, Y> {
 	source: Group<X>;

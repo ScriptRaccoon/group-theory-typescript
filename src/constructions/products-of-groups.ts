@@ -1,5 +1,5 @@
-import { Group } from "./group";
-import { ProductOfSets } from "./set";
+import { Group } from "../concepts/group";
+import { ProductOfSets } from "./products-of-sets";
 
 export function productOfGroups<S, T>(
 	A: Group<S>,
