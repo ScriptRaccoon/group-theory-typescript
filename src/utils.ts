@@ -59,3 +59,7 @@ export function listOfPermutations(n: number): number[][] {
 export function interval(n: number): number[] {
 	return new Array(n).fill(0).map((_, i) => i);
 }
+
+export function mod(a: number, r: number) {
+	return ((a % r) + r) % r;
+}

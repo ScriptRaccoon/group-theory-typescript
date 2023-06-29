@@ -28,6 +28,10 @@ console.assert(KleinFourGroup.isCommutative === true);
 console.assert(KleinFourGroup.compose("a", "b") === "c");
 console.assert(KleinFourGroup.maximalElementOrder === 2);
 
+import { GL2_F2 } from "./examples/groups/GL2F2";
+console.assert(GL2_F2.order === 6);
+console.assert(GL2_F2.isCommutative === false);
+
 import { productOfGroups } from "./constructions/products-of-groups";
 const Zmod7_x_S3 = productOfGroups(Zmod7, S3);
 console.assert(Zmod7_x_S3.isCommutative === false);
