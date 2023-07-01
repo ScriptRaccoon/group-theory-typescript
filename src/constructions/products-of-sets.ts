@@ -5,6 +5,7 @@ export function ProductOfSets<X, Y>(
 	B: SetWithEquality<Y>
 ): SetWithEquality<[X, Y]> {
 	let product = new Set<[X, Y]>();
+
 	for (const a of A) {
 		for (const b of B) {
 			product.add([a, b]);
