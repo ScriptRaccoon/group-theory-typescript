@@ -1,6 +1,11 @@
 import { Group } from "../../concepts/group";
 import { SetWithEquality } from "../../concepts/set";
-import { interval, mod, squareOfArray } from "../../utils";
+import {
+	equalMatrices,
+	interval,
+	mod,
+	squareOfArray,
+} from "../../utils";
 
 // all matrices here are defined over the field F_2
 
@@ -10,21 +15,8 @@ const invertibleMatrices: number[][][] = matrices.filter(
 	([[a, b], [c, d]]) => mod(a * d - b * c, 2) !== 0
 );
 
-function equalModulo2(a: number[][], b: number[][]): boolean {
-	if (a.length !== b.length) return false;
-	for (let i = 0; i < a.length; i++) {
-		const row_a = a[i];
-		const row_b = b[i];
-		if (row_a.length !== row_b.length) return false;
-		for (let j = 0; j < row_a.length; j++) {
-			if (mod(row_a[j], 2) !== mod(row_b[j], 2)) return false;
-		}
-	}
-	return true;
-}
-
 export const GL2_F2 = new Group<number[][]>({
-	set: new SetWithEquality(invertibleMatrices, equalModulo2),
+	set: new SetWithEquality(invertibleMatrices, equalMatrices),
 	unit: [
 		[1, 0],
 		[0, 1],

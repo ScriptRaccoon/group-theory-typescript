@@ -57,3 +57,10 @@ export function equalTuples<T>(a: T[], b: T[]): boolean {
 		a.every((_, index) => a[index] === b[index])
 	);
 }
+
+export function equalMatrices<T>(a: T[][], b: T[][]): boolean {
+	return (
+		a.length === b.length &&
+		a.every((_, index) => equalTuples(a[index], b[index]))
+	);
+}
