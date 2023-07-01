@@ -63,3 +63,10 @@ export function interval(n: number): number[] {
 export function mod(a: number, r: number) {
 	return ((a % r) + r) % r;
 }
+
+export function equalTuples<T>(a: T[], b: T[]): boolean {
+	return (
+		a.length === b.length &&
+		a.every((_, index) => a[index] === b[index])
+	);
+}

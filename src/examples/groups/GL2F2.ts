@@ -6,28 +6,25 @@ import { interval, mod, squareOfArray } from "../../utils";
 
 const matrices = squareOfArray(squareOfArray(interval(2)));
 
-const invertibleMatrices = matrices.filter(
+const invertibleMatrices: number[][][] = matrices.filter(
 	([[a, b], [c, d]]) => mod(a * d - b * c, 2) !== 0
 );
 
-class SetOfMatrices extends SetWithEquality<number[][]> {
-	equal(a: number[][], b: number[][]): boolean {
-		if (a.length !== b.length) return false;
-		for (let i = 0; i < a.length; i++) {
-			const row_a = a[i];
-			const row_b = b[i];
-			if (row_a.length !== row_b.length) return false;
-			for (let j = 0; j < row_a.length; j++) {
-				if (mod(row_a[j], 2) !== mod(row_b[j], 2))
-					return false;
-			}
+function equalModulo2(a: number[][], b: number[][]): boolean {
+	if (a.length !== b.length) return false;
+	for (let i = 0; i < a.length; i++) {
+		const row_a = a[i];
+		const row_b = b[i];
+		if (row_a.length !== row_b.length) return false;
+		for (let j = 0; j < row_a.length; j++) {
+			if (mod(row_a[j], 2) !== mod(row_b[j], 2)) return false;
 		}
-		return true;
 	}
+	return true;
 }
 
 export const GL2_F2 = new Group<number[][]>({
-	set: new SetOfMatrices(invertibleMatrices),
+	set: new SetWithEquality(invertibleMatrices, equalModulo2),
 	unit: [
 		[1, 0],
 		[0, 1],

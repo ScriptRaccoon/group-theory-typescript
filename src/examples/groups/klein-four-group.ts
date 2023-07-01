@@ -1,8 +1,8 @@
 import { Group } from "../../concepts/group";
-import { SetOfStrings } from "../sets/index";
+import { SetWithEquality } from "../../concepts/set";
 
 export const KleinFourGroup = new Group<string>({
-	set: new SetOfStrings(["e", "a", "b", "c"]),
+	set: new SetWithEquality(["e", "a", "b", "c"]),
 	unit: "e",
 	inverse: (x) => x,
 	compose: (x, y) => {

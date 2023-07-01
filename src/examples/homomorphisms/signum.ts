@@ -1,7 +1,6 @@
-import { HomomorphismOfGroups } from "../../concepts/homomorphism";
-import { additiveGroupModulo } from "../groups/modulo-group";
 import { S } from "../groups/sign-group";
 import { symmetricGroup } from "../groups/symmetric-group";
+import { HomomorphismOfGroups } from "../../concepts/homomorphism";
 
 const S3 = symmetricGroup(3);
 
