@@ -40,4 +40,25 @@ export class HomomorphismOfGroups<X, Y>
 			this.target.set.contains(this.map(a))
 		);
 	}
+
+	get isInjective(): boolean {
+		const pairs = squareOfArray(this.source.elements);
+		return pairs.every(
+			([a, b]) =>
+				this.source.set.equal(a, b) ||
+				!this.target.set.equal(this.map(a), this.map(b))
+		);
+	}
+
+	get isSurjective(): boolean {
+		return this.target.elements.every((b) =>
+			this.source.elements.some((a) =>
+				this.target.set.equal(this.map(a), b)
+			)
+		);
+	}
+
+	get isIsomorphism(): boolean {
+		return this.isInjective && this.isSurjective;
+	}
 }

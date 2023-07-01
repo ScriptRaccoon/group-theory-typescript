@@ -43,3 +43,6 @@ console.assert(signum.isHomomorphism === true);
 console.assert(
 	S3.elements.filter((a) => signum.map(a) === S.unit).length === 3
 );
+console.assert(signum.isInjective === false);
+console.assert(signum.isSurjective === true);
+console.assert(signum.isIsomorphism === false);
