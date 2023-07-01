@@ -46,3 +46,6 @@ console.assert(
 console.assert(signum.isInjective === false);
 console.assert(signum.isSurjective === true);
 console.assert(signum.isIsomorphism === false);
+
+import { isom } from "./examples/homomorphisms/isom-GL2-S3";
+console.assert(isom.isIsomorphism);
