@@ -1,11 +1,11 @@
 import { SetWithEquality } from "../concepts/set";
-import { productOfTwoArrays } from "../utils";
+import { cartesian } from "../utils";
 
 export function ProductOfSets<X, Y>(
 	A: SetWithEquality<X>,
 	B: SetWithEquality<Y>
 ): SetWithEquality<[X, Y]> {
-	let product = productOfTwoArrays(Array.from(A), Array.from(B));
+	let product = cartesian(Array.from(A), Array.from(B));
 
 	return new SetWithEquality<[X, Y]>(
 		product,

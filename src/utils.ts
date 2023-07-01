@@ -1,35 +1,22 @@
-export function productOfTwoArrays<X, Y>(A: X[], B: Y[]): [X, Y][] {
-	let result: [X, Y][] = [];
-	for (const a of A) {
-		for (const b of B) {
-			result.push([a, b]);
-		}
-	}
-	return result;
-}
+// reference for cartesian: https://stackoverflow.com/questions/65025411
 
-export function productOfThreeArrays<X, Y, Z>(
-	A: X[],
-	B: Y[],
-	C: Z[]
-): [X, Y, Z][] {
-	let result: [X, Y, Z][] = [];
-	for (const a of A) {
-		for (const b of B) {
-			for (const c of C) {
-				result.push([a, b, c]);
-			}
-		}
-	}
-	return result;
-}
+type MapCartesian<T extends any[][]> = {
+	[P in keyof T]: T[P] extends Array<infer U> ? U : never;
+};
+export const cartesian = <T extends any[][]>(
+	...arr: T
+): MapCartesian<T>[] =>
+	arr.reduce(
+		(a, b) => a.flatMap((c) => b.map((d) => [...c, d])),
+		[[]]
+	) as MapCartesian<T>[];
 
 export function squareOfArray<X>(A: X[]): [X, X][] {
-	return productOfTwoArrays(A, A);
+	return cartesian(A, A);
 }
 
 export function cubeOfArray<X>(A: X[]): [X, X, X][] {
-	return productOfThreeArrays(A, A, A);
+	return cartesian(A, A, A);
 }
 
 export function listOfPermutations(n: number): number[][] {
