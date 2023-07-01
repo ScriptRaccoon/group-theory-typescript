@@ -135,4 +135,19 @@ export class Group<X> implements GroupData<X> {
 		}
 		return maximalElementOrder;
 	}
+
+	subgroup(list: X[]): Group<X> {
+		const set = this.set.subset(list);
+		const unit = this.unit;
+		const compose = this.compose;
+		const inverse = this.inverse;
+		const isSubgroup =
+			set.contains(unit) &&
+			squareOfArray(list).every(([a, b]) =>
+				set.contains(compose(a, b))
+			) &&
+			list.every((a) => set.contains(inverse(a)));
+		if (!isSubgroup) throw "No valid subgroup";
+		return new Group<X>({ set, unit, compose, inverse });
+	}
 }

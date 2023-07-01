@@ -27,12 +27,26 @@ console.assert(S3.set.equal(S3.inverse([1, 2, 0]), [2, 0, 1]));
 console.assert(S3.elementOrder(S3.unit) === 0);
 console.assert(S3.elementOrder([1, 0, 2]) === 2);
 console.assert(S3.maximalElementOrder === 3);
+console.assert(
+	S3.subgroup([
+		[0, 1, 2],
+		[1, 0, 2],
+	]).isGroup === true
+);
+console.assert(
+	S3.subgroup([
+		[0, 1, 2],
+		[2, 0, 1],
+		[1, 2, 0],
+	]).isGroup === true
+);
 
 import { KleinFourGroup } from "./examples/groups/klein-four-group";
 console.assert(KleinFourGroup.order === 4);
 console.assert(KleinFourGroup.isCommutative === true);
 console.assert(KleinFourGroup.compose("a", "b") === "c");
 console.assert(KleinFourGroup.maximalElementOrder === 2);
+console.assert(KleinFourGroup.subgroup(["e", "a"]).isGroup === true);
 
 import { GL2_F2 } from "./examples/groups/GL2F2";
 console.assert(GL2_F2.order === 6);
@@ -55,3 +69,9 @@ console.assert(signum.isIsomorphism === false);
 
 import { isom } from "./examples/homomorphisms/isom-GL2-S3";
 console.assert(isom.isIsomorphism);
+
+const Zmod6 = additiveGroupModulo(6);
+console.assert(Zmod6.subgroup([0]).isGroup === true);
+console.assert(Zmod6.subgroup([0, 2, 4]).isGroup === true);
+console.assert(Zmod6.subgroup([0, 3]).isGroup === true);
+console.assert(Zmod6.subgroup([0, 1, 2, 3, 4, 5]).isGroup === true);

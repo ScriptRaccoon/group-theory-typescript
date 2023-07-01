@@ -9,4 +9,10 @@ export class SetWithEquality<X> extends Set<X> {
 	contains(a: X): boolean {
 		return Array.from(this).some((b) => this.equal(a, b));
 	}
+
+	subset(list: X[]): SetWithEquality<X> {
+		if (list.some((a) => !this.contains(a)))
+			throw "Subset has elements which do not belong to the set";
+		return new SetWithEquality<X>(list, this.equal);
+	}
 }
