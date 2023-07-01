@@ -1,3 +1,9 @@
+import { SetWithEquality } from "./concepts/set";
+import { equalTuples } from "./utils";
+const M = new SetWithEquality([[0, 1]], equalTuples);
+console.assert(M.contains([0, 1]) === true);
+console.assert(M.has([0, 1]) === false);
+
 import { S } from "./examples/groups/sign-group";
 console.assert(S.isCommutative === true);
 console.assert(S.order === 2);
