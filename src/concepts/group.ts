@@ -21,7 +21,9 @@ export class Group<X> implements GroupData<X> {
 		this.inverse = inverse;
 		this.compose = compose;
 
-		if (!this.isGroup) throw "Group axioms are not satisfied";
+		if (!this.isGroup) {
+			console.error("Error: Group axioms are not satisfied");
+		}
 	}
 
 	get elements(): X[] {
@@ -151,7 +153,6 @@ export class Group<X> implements GroupData<X> {
 				set.contains(compose(a, b))
 			) &&
 			list.every((a) => set.contains(inverse(a)));
-		if (!isSubgroup) throw "No valid subgroup";
 		return new Group<X>({ set, unit, compose, inverse });
 	}
 }

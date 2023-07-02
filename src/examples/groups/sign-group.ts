@@ -1,6 +1,7 @@
 import { Group } from "../../concepts/group";
 import { SetWithEquality } from "../../concepts/set";
-export const S = new Group<number>({
+
+export const SignGroup = new Group<number>({
 	set: new SetWithEquality([-1, 1]),
 	unit: 1,
 	compose: (a, b) => a * b,

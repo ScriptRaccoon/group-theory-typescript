@@ -11,8 +11,9 @@ export class SetWithEquality<X> extends Set<X> {
 	}
 
 	subset(list: X[]): SetWithEquality<X> {
-		if (list.some((a) => !this.contains(a)))
-			throw "Subset has elements which do not belong to the set";
+		if (list.some((a) => !this.contains(a))) {
+			console.error("Error: Subset property is not satisfied");
+		}
 		return new SetWithEquality<X>(list, this.equal);
 	}
 }

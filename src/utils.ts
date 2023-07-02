@@ -19,15 +19,28 @@ export function cubeOfArray<X>(A: X[]): [X, X, X][] {
 	return cartesian(A, A, A);
 }
 
-export function listOfPermutations(n: number): number[][] {
-	if (n < 0) throw "Only non-negative numbers are allowed";
-	if (n != Math.ceil(n)) throw "Only whole numbers are allowed";
+export function listOfPermutations(
+	n: number
+): number[][] | undefined {
+	if (n < 0) {
+		console.error(
+			"Only non-negative numbers are allowed for list of permutations"
+		);
+		return undefined;
+	}
+	if (n != Math.ceil(n)) {
+		console.error(
+			"Only whole numbers are allowed for list of permutations"
+		);
+		return undefined;
+	}
 
 	if (n == 0) {
 		return [[]];
 	}
 
 	const list = listOfPermutations(n - 1);
+	if (!list) return undefined;
 
 	const result: number[][] = [];
 

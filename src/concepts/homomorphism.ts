@@ -19,8 +19,17 @@ export class HomomorphismOfGroups<X, Y>
 		this.source = source;
 		this.target = target;
 		this.map = map;
-		if (!this.isHomomorphism || !this.isClosed)
-			throw "Homomorphic property is not satisfied";
+		if (!this.isHomomorphism) {
+			console.error(
+				"Error: Homomorphism property is not satisfied"
+			);
+		}
+	}
+
+	get isClosed(): boolean {
+		return this.source.elements.every((a) =>
+			this.target.set.contains(this.map(a))
+		);
 	}
 
 	isHomomorphicPair([a, b]: [X, X]): boolean {
@@ -32,12 +41,9 @@ export class HomomorphismOfGroups<X, Y>
 
 	get isHomomorphism(): boolean {
 		const pairs = squareOfArray(this.source.elements);
-		return pairs.every(this.isHomomorphicPair.bind(this));
-	}
-
-	get isClosed(): boolean {
-		return this.source.elements.every((a) =>
-			this.target.set.contains(this.map(a))
+		return (
+			this.isClosed &&
+			pairs.every(this.isHomomorphicPair.bind(this))
 		);
 	}
 
