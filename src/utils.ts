@@ -24,13 +24,13 @@ export function listOfPermutations(
 ): number[][] | undefined {
 	if (n < 0) {
 		console.error(
-			"Only non-negative numbers are allowed for list of permutations"
+			"Error: Only non-negative numbers are allowed for list of permutations"
 		);
 		return undefined;
 	}
 	if (n != Math.ceil(n)) {
 		console.error(
-			"Only whole numbers are allowed for list of permutations"
+			"Error: Only whole numbers are allowed for list of permutations"
 		);
 		return undefined;
 	}

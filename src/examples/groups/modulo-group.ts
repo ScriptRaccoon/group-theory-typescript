@@ -13,7 +13,9 @@ export function additiveGroupModulo(
 	}
 
 	if (n != Math.ceil(n)) {
-		console.error("Error: Only whole numbers are allowed");
+		console.error(
+			"Error: Only whole numbers are allowed for Z/nZ"
+		);
 		return undefined;
 	}
 
