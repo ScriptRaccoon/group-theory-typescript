@@ -136,6 +136,10 @@ export class Group<X> implements GroupData<X> {
 		return maximalElementOrder;
 	}
 
+	get isTrivial(): boolean {
+		return this.order === 1;
+	}
+
 	subgroup(list: X[]): Group<X> {
 		const set = this.set.subset(list);
 		const unit = this.unit;

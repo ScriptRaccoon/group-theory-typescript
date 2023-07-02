@@ -66,9 +66,20 @@ console.assert(
 console.assert(signum.isInjective === false);
 console.assert(signum.isSurjective === true);
 console.assert(signum.isIsomorphism === false);
+console.assert(signum.kernel.order === 3);
+console.assert(signum.image.order === 2);
+
+import { emb } from "./examples/homomorphisms/embedding";
+console.assert(emb.isHomomorphism === true);
+console.assert(emb.isSurjective === false);
+console.assert(emb.isInjective === true);
+console.assert(emb.kernel.isTrivial === true);
+console.assert(emb.image.order == 2);
 
 import { isom } from "./examples/homomorphisms/isom-GL2-S3";
 console.assert(isom.isIsomorphism);
+console.assert(isom.kernel.isTrivial === true);
+console.assert(isom.image.order === 6);
 
 const Zmod6 = additiveGroupModulo(6);
 console.assert(Zmod6.subgroup([0]).isGroup === true);

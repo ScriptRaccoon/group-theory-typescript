@@ -61,4 +61,20 @@ export class HomomorphismOfGroups<X, Y>
 	get isIsomorphism(): boolean {
 		return this.isInjective && this.isSurjective;
 	}
+
+	get kernel(): Group<X> {
+		const elements = this.source.elements.filter((a) =>
+			this.target.set.equal(this.map(a), this.target.unit)
+		);
+		return this.source.subgroup(elements);
+	}
+
+	get image(): Group<Y> {
+		const elements = this.target.elements.filter((b) =>
+			this.source.elements.some((a) =>
+				this.target.set.equal(this.map(a), b)
+			)
+		);
+		return this.target.subgroup(elements);
+	}
 }
