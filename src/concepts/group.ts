@@ -1,5 +1,5 @@
 import { SetWithEquality } from "./set";
-import { cubeOfArray, squareOfArray } from "../utils";
+import { cartesian, cubeOfArray, squareOfArray } from "../utils";
 
 interface GroupData<X> {
 	set: SetWithEquality<X>;
@@ -142,17 +142,44 @@ export class Group<X> implements GroupData<X> {
 		return this.order === 1;
 	}
 
-	subgroup(list: X[]): Group<X> {
-		const set = this.set.subset(list);
-		const unit = this.unit;
-		const compose = this.compose;
-		const inverse = this.inverse;
-		const isSubgroup =
-			set.contains(unit) &&
-			squareOfArray(list).every(([a, b]) =>
-				set.contains(compose(a, b))
-			) &&
-			list.every((a) => set.contains(inverse(a)));
-		return new Group<X>({ set, unit, compose, inverse });
+	subgroupOfList(list: X[]): Group<X> {
+		return new Group<X>({
+			set: this.set.subset(list),
+			unit: this.unit,
+			compose: this.compose,
+			inverse: this.inverse,
+		});
+	}
+
+	subgroupGeneratedBy(generators: X[]): Group<X> {
+		let elements = [this.unit];
+		let done = false;
+
+		const getNewElements = (): X[] => {
+			const newElements = [];
+			for (const element of elements) {
+				for (const generator of generators) {
+					const product = this.compose(element, generator);
+					const isOld = elements
+						.concat(newElements)
+						.some((s) => this.set.equal(s, product));
+					if (!isOld) newElements.push(product);
+				}
+			}
+			return newElements;
+		};
+
+		while (!done) {
+			const newElements = getNewElements();
+			done = newElements.length === 0;
+			elements = elements.concat(newElements);
+		}
+
+		return new Group<X>({
+			set: this.set.subset(elements),
+			unit: this.unit,
+			compose: this.compose,
+			inverse: this.inverse,
+		});
 	}
 }

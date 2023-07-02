@@ -72,7 +72,7 @@ export class HomomorphismOfGroups<X, Y>
 		const elements = this.source.elements.filter((a) =>
 			this.target.set.equal(this.map(a), this.target.unit)
 		);
-		return this.source.subgroup(elements);
+		return this.source.subgroupOfList(elements);
 	}
 
 	get image(): Group<Y> {
@@ -81,6 +81,6 @@ export class HomomorphismOfGroups<X, Y>
 				this.target.set.equal(this.map(a), b)
 			)
 		);
-		return this.target.subgroup(elements);
+		return this.target.subgroupOfList(elements);
 	}
 }
