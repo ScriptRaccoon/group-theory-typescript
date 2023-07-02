@@ -76,10 +76,13 @@ console.assert(emb.isInjective);
 console.assert(emb.kernel.isTrivial);
 console.assert(emb.image.order == 2);
 
-import { isom } from "./examples/homomorphisms/isom-GL2-S3";
-console.assert(isom.isIsomorphism);
-console.assert(isom.kernel.isTrivial);
-console.assert(isom.image.order === 6);
+import { isomZmod2 } from "./examples/homomorphisms/isom-Zmod2";
+console.assert(isomZmod2.isIsomorphism);
+
+import { isomGL2 } from "./examples/homomorphisms/isom-GL2-S3";
+console.assert(isomGL2.isIsomorphism);
+console.assert(isomGL2.kernel.isTrivial);
+console.assert(isomGL2.image.order === 6);
 
 const Zmod6 = additiveGroupModulo(6)!;
 console.assert(Zmod6.subgroup([0]).isGroup);

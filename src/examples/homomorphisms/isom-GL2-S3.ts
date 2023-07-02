@@ -5,7 +5,7 @@ import { symmetricGroup } from "../groups/symmetric-group";
 const S3 = symmetricGroup(3)!;
 
 // this is an isomorphism from S3 to GL_2(IF_2)
-export const isom = new HomomorphismOfGroups({
+export const isomGL2 = new HomomorphismOfGroups({
 	source: S3,
 	target: GL2_F2,
 	map: (a) => [
