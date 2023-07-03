@@ -142,6 +142,10 @@ export class Group<X> implements GroupData<X> {
 		return maximalElementOrder;
 	}
 
+	get isCyclic(): boolean {
+		return this.maximalElementOrder === this.order;
+	}
+
 	subgroupOfList(list: X[]): Group<X> {
 		return new Group<X>({
 			set: this.set.subset(list),

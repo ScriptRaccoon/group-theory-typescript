@@ -15,21 +15,24 @@ console.assert(SignGroup.compose(-1, -1) === 1);
 // tests for the group Z/7Z
 import { additiveGroupModulo } from "./examples/groups/modulo-group";
 const Zmod7 = additiveGroupModulo(7)!;
+console.assert(Zmod7.isGroup);
+console.assert(Zmod7.isCommutative);
 console.assert(Zmod7.order === 7);
 console.assert(Zmod7.compose(5, 3) === 1);
-console.assert(Zmod7.isCommutative);
 
 // tests for the symmetric group S_3
 import { symmetricGroup } from "./examples/groups/symmetric-group";
 const S3 = symmetricGroup(3)!;
+console.assert(S3.isGroup);
 console.assert(!S3.isCommutative);
 console.assert(S3.order === 6);
 console.assert(S3.set.equal(S3.inverse([1, 2, 0]), [2, 0, 1]));
 
 // tests for Klein Four Group
 import { KleinFourGroup } from "./examples/groups/klein-four-group";
-console.assert(KleinFourGroup.order === 4);
+console.assert(KleinFourGroup.isGroup);
 console.assert(KleinFourGroup.isCommutative);
+console.assert(KleinFourGroup.order === 4);
 console.assert(KleinFourGroup.compose("a", "b") === "c");
 
 // tests for GL_2(IF_2)
@@ -41,6 +44,7 @@ console.assert(!GL2_F2.isCommutative);
 // tests for the product Z/7Z x S_3
 import { productOfGroups } from "./constructions/products-of-groups";
 const Zmod7_x_S3 = productOfGroups(Zmod7, S3);
+console.assert(Zmod7_x_S3.isGroup);
 console.assert(!Zmod7_x_S3.isCommutative);
 console.assert(Zmod7_x_S3.order === 42);
 
@@ -51,6 +55,13 @@ console.assert(S3.maximalElementOrder === 3);
 console.assert(KleinFourGroup.maximalElementOrder === 2);
 console.assert(Zmod7_x_S3.maximalElementOrder === 21);
 
+// tests for cyclic groups
+const Zmod6 = additiveGroupModulo(6)!;
+console.assert(Zmod6.isCyclic);
+console.assert(!S3.isCyclic);
+console.assert(!productOfGroups(Zmod6, Zmod6).isCyclic);
+console.assert(productOfGroups(Zmod6, Zmod7).isCyclic);
+
 // tests for signum homomorphism S_3 ---> {+1,-1}
 import { signum } from "./examples/homomorphisms/signum";
 console.assert(signum.isHomomorphism);
@@ -58,6 +69,7 @@ console.assert(!signum.isInjective);
 console.assert(signum.isSurjective);
 console.assert(!signum.isIsomorphism);
 console.assert(signum.kernel.order === 3);
+console.assert(signum.kernel.isCyclic);
 console.assert(signum.image.order === 2);
 
 // tests for the embedding Z/2Z ---> Z/4Z
@@ -79,7 +91,6 @@ console.assert(isomGL2.kernel.isTrivial);
 console.assert(isomGL2.image.order === 6);
 
 // tests for generated subgroups
-const Zmod6 = additiveGroupModulo(6)!;
 console.assert(Zmod6.subgroupGeneratedBy([]).isTrivial);
 console.assert(Zmod6.subgroupGeneratedBy([1]).order === 6);
 console.assert(Zmod6.subgroupGeneratedBy([2]).order === 3);
