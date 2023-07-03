@@ -109,3 +109,35 @@ console.assert(
 		[0, 2, 1],
 	]).order == 6
 );
+
+// tests for element powers
+console.assert(Zmod6.power(2, 0) === 0);
+console.assert(Zmod6.power(2, 1) === 2);
+console.assert(Zmod6.power(2, -1) === 4);
+console.assert(KleinFourGroup.power("a", 2) === "e");
+console.assert(S3.set.equal(S3.power([2, 0, 1], 3), [0, 1, 2]));
+console.assert(
+	S3.elements.every((a) =>
+		S3.set.equal(S3.inverse(a), S3.power(a, -1))
+	)
+);
+console.assert(
+	S3.elements.every((a) =>
+		S3.set.equal(
+			S3.compose(S3.inverse(a), S3.inverse(a)),
+			S3.power(a, -2)
+		)
+	)
+);
+
+// tests for the homomorphisms Z/nZ ---> G
+import { homFromTorsion } from "./examples/homomorphisms/hom-from-Zmodn";
+const f = homFromTorsion(3, Zmod6, 2);
+console.assert(f != undefined);
+console.assert(f?.isHomomorphism);
+console.assert(f?.isInjective);
+
+const g = homFromTorsion([2, 0, 1], S3, 3);
+console.assert(g != undefined);
+console.assert(g?.isHomomorphism);
+console.assert(g?.isInjective);

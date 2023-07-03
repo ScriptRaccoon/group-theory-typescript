@@ -120,6 +120,22 @@ export class Group<X> implements GroupData<X> {
 		return this.order === 1;
 	}
 
+	power(a: X, n: number): X {
+		if (n != Math.floor(n)) {
+			console.error(
+				"Error: Only whole numbers are allowed for powers"
+			);
+			return this.unit;
+		}
+		if (n === 0) {
+			return this.unit;
+		} else if (n > 0) {
+			return this.compose(a, this.power(a, n - 1));
+		} else {
+			return this.power(this.inverse(a), -n);
+		}
+	}
+
 	elementOrder(a: X): number {
 		if (this.set.equal(a, this.unit)) return 0;
 		let order = 1;
@@ -132,14 +148,9 @@ export class Group<X> implements GroupData<X> {
 	}
 
 	get maximalElementOrder(): number {
-		let maximalElementOrder = 0;
-		for (const a of this.elements) {
-			maximalElementOrder = Math.max(
-				maximalElementOrder,
-				this.elementOrder(a)
-			);
-		}
-		return maximalElementOrder;
+		return Math.max(
+			...this.elements.map((a) => this.elementOrder(a))
+		);
 	}
 
 	get isCyclic(): boolean {
