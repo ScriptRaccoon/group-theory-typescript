@@ -90,6 +90,12 @@ console.assert(isomGL2.isIsomorphism);
 console.assert(isomGL2.kernel.isTrivial);
 console.assert(isomGL2.image.order === 6);
 
+// test for a trivial homomorphism
+import { trivialHom } from "./examples/homomorphisms/trivial-hom";
+const trivialHomExample = trivialHom(S3, Zmod6);
+console.assert(trivialHomExample.isHomomorphism);
+console.assert(!trivialHomExample.isSurjective);
+
 // tests for generated subgroups
 console.assert(Zmod6.subgroupGeneratedBy([]).isTrivial);
 console.assert(Zmod6.subgroupGeneratedBy([1]).order === 6);
