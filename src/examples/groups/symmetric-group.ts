@@ -4,11 +4,12 @@ import {
 	equalTuples,
 	interval,
 	listOfPermutations,
+	type permutation,
 } from "../../utils";
 
 export function symmetricGroup(
 	n: number
-): Group<number[]> | undefined {
+): Group<permutation> | undefined {
 	if (n < 0) {
 		console.error(
 			"Error: Only non-negative numbers are allowed for S_n"
@@ -25,7 +26,7 @@ export function symmetricGroup(
 	const permutations = listOfPermutations(n);
 	if (!permutations) return undefined;
 
-	return new Group<number[]>({
+	return new Group<permutation>({
 		set: new SetWithEquality(permutations, equalTuples),
 		unit: interval(n),
 		inverse: (a) =>

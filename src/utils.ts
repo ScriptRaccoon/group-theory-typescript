@@ -19,9 +19,11 @@ export function cubeOfArray<X>(A: X[]): [X, X, X][] {
 	return cartesian(A, A, A);
 }
 
+export type permutation = number[];
+
 export function listOfPermutations(
 	n: number
-): number[][] | undefined {
+): permutation[] | undefined {
 	if (n < 0) {
 		console.error(
 			"Error: Only non-negative numbers are allowed for list of permutations"
@@ -35,14 +37,14 @@ export function listOfPermutations(
 		return undefined;
 	}
 
-	if (n == 0) {
+	if (n === 0) {
 		return [[]];
 	}
 
 	const list = listOfPermutations(n - 1);
 	if (!list) return undefined;
 
-	const result: number[][] = [];
+	const result: permutation[] = [];
 
 	for (const perm of list) {
 		for (let index = 0; index < n; index++) {

@@ -7,15 +7,17 @@ import {
 	squareOfArray,
 } from "../../utils";
 
-// all matrices here are defined over the field F_2
+// all matrices here are defined over the field IF_2
 
-const matrices = squareOfArray(squareOfArray(interval(2)));
+type matrix = number[][];
 
-const invertibleMatrices: number[][][] = matrices.filter(
+const matrices: matrix[] = squareOfArray(squareOfArray(interval(2)));
+
+const invertibleMatrices: matrix[] = matrices.filter(
 	([[a, b], [c, d]]) => mod(a * d - b * c, 2) !== 0
 );
 
-export const GL2_F2 = new Group<number[][]>({
+export const GL2_F2 = new Group<matrix>({
 	set: new SetWithEquality(invertibleMatrices, equalMatrices),
 	unit: [
 		[1, 0],
