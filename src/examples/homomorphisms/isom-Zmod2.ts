@@ -1,6 +1,8 @@
 import { HomomorphismOfGroups } from "../../concepts/homomorphism";
-import { Zmod2 } from "../groups/Zmod2";
+import { additiveGroupModulo } from "../groups/modulo-group";
 import { SignGroup } from "../groups/sign-group";
+
+const Zmod2 = additiveGroupModulo(2)!;
 
 export const isomZmod2 = new HomomorphismOfGroups({
 	source: Zmod2,

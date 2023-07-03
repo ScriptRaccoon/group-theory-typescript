@@ -116,6 +116,10 @@ export class Group<X> implements GroupData<X> {
 		return this.set.size;
 	}
 
+	get isTrivial(): boolean {
+		return this.order === 1;
+	}
+
 	elementOrder(a: X): number {
 		if (this.set.equal(a, this.unit)) return 0;
 		let order = 1;
@@ -136,10 +140,6 @@ export class Group<X> implements GroupData<X> {
 			);
 		}
 		return maximalElementOrder;
-	}
-
-	get isTrivial(): boolean {
-		return this.order === 1;
 	}
 
 	subgroupOfList(list: X[]): Group<X> {
