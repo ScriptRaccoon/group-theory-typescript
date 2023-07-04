@@ -137,7 +137,6 @@ export class Group<X> implements GroupData<X> {
 	}
 
 	elementOrder(a: X): number {
-		if (this.set.equal(a, this.unit)) return 0;
 		let order = 1;
 		let power = a;
 		while (!this.set.equal(power, this.unit)) {
