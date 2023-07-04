@@ -48,12 +48,12 @@ console.assert(Zmod7_x_S3.isGroup);
 console.assert(!Zmod7_x_S3.isCommutative);
 console.assert(Zmod7_x_S3.order === 42);
 
-// tests for element orders
-console.assert(S3.elementOrder(S3.unit) === 0);
-console.assert(S3.elementOrder([1, 0, 2]) === 2);
-console.assert(S3.maximalElementOrder === 3);
-console.assert(KleinFourGroup.maximalElementOrder === 2);
-console.assert(Zmod7_x_S3.maximalElementOrder === 21);
+// tests for orders of elements
+console.assert(S3.orderOfElement(S3.unit) === 1);
+console.assert(S3.orderOfElement([1, 0, 2]) === 2);
+console.assert(S3.maximalOrderOfElement === 3);
+console.assert(KleinFourGroup.maximalOrderOfElement === 2);
+console.assert(Zmod7_x_S3.maximalOrderOfElement === 21);
 
 // tests for cyclic groups
 const Zmod6 = additiveGroupModulo(6)!;

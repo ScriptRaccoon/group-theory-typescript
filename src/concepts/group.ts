@@ -136,7 +136,7 @@ export class Group<X> implements GroupData<X> {
 		}
 	}
 
-	elementOrder(a: X): number {
+	orderOfElement(a: X): number {
 		let order = 1;
 		let power = a;
 		while (!this.set.equal(power, this.unit)) {
@@ -146,14 +146,14 @@ export class Group<X> implements GroupData<X> {
 		return order;
 	}
 
-	get maximalElementOrder(): number {
+	get maximalOrderOfElement(): number {
 		return Math.max(
-			...this.elements.map((a) => this.elementOrder(a))
+			...this.elements.map((a) => this.orderOfElement(a))
 		);
 	}
 
 	get isCyclic(): boolean {
-		return this.maximalElementOrder === this.order;
+		return this.maximalOrderOfElement === this.order;
 	}
 
 	subgroupOfList(list: X[]): Group<X> {
