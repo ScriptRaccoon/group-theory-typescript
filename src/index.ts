@@ -107,7 +107,7 @@ console.assert(!trivialHomExample.isSurjective);
 
 // tests for subgroup criterion
 console.assert(Zmod6.subgroupOfList([0]).isGroup);
-// console.assert(!Zmod6.subgroupOfList([1]).isGroup);
+console.assert(!Zmod6.subgroupOfList([1]).isGroup);
 console.assert(Zmod6.subgroupOfList([0, 2, 4]).isGroup);
 
 // tests for generated subgroups

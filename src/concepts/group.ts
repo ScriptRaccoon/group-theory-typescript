@@ -1,5 +1,5 @@
 import { SetWithEquality } from "./set";
-import { cartesian, cubeOfArray, squareOfArray } from "../utils";
+import { cubeOfArray, squareOfArray } from "../utils";
 
 interface GroupData<X> {
 	set: SetWithEquality<X>;

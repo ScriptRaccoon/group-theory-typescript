@@ -5,12 +5,7 @@ export function ProductOfSets<X, Y>(
 	A: SetWithEquality<X>,
 	B: SetWithEquality<Y>
 ): SetWithEquality<[X, Y]> {
-	const product: [X, Y][] = [];
-	for (const a of A) {
-		for (const b of B) {
-			product.push([a, b]);
-		}
-	}
+	let product = cartesian(Array.from(A), Array.from(B));
 
 	return new SetWithEquality<[X, Y]>(
 		product,
