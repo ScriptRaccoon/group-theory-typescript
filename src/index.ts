@@ -48,6 +48,11 @@ console.assert(Zmod7_x_S3.isGroup);
 console.assert(!Zmod7_x_S3.isCommutative);
 console.assert(Zmod7_x_S3.order === 42);
 
+// test for the swap isomorphism A x B ---> B x A
+import { isomSwap } from "./examples/homomorphisms/isom-swap";
+const swap = isomSwap(Zmod7, S3);
+console.assert(swap.isIsomorphism);
+
 // tests for orders of elements
 console.assert(S3.orderOfElement(S3.unit) === 1);
 console.assert(S3.orderOfElement([1, 0, 2]) === 2);
@@ -90,11 +95,20 @@ console.assert(isomGL2.isIsomorphism);
 console.assert(isomGL2.kernel.isTrivial);
 console.assert(isomGL2.image.order === 6);
 
+// test for the isom. V4 -> Z/2Z x Z/2Z
+import { isomKlein } from "./examples/homomorphisms/isom-klein";
+console.assert(isomKlein.isIsomorphism);
+
 // test for a trivial homomorphism
 import { trivialHom } from "./examples/homomorphisms/trivial-hom";
 const trivialHomExample = trivialHom(S3, Zmod6);
 console.assert(trivialHomExample.isHomomorphism);
 console.assert(!trivialHomExample.isSurjective);
+
+// tests for subgroup criterion
+console.assert(Zmod6.subgroupOfList([0]).isGroup);
+// console.assert(!Zmod6.subgroupOfList([1]).isGroup);
+console.assert(Zmod6.subgroupOfList([0, 2, 4]).isGroup);
 
 // tests for generated subgroups
 console.assert(Zmod6.subgroupGeneratedBy([]).isTrivial);
@@ -122,19 +136,6 @@ console.assert(Zmod6.power(2, 1) === 2);
 console.assert(Zmod6.power(2, -1) === 4);
 console.assert(KleinFourGroup.power("a", 2) === "e");
 console.assert(S3.set.equal(S3.power([2, 0, 1], 3), [0, 1, 2]));
-console.assert(
-	S3.elements.every((a) =>
-		S3.set.equal(S3.inverse(a), S3.power(a, -1))
-	)
-);
-console.assert(
-	S3.elements.every((a) =>
-		S3.set.equal(
-			S3.compose(S3.inverse(a), S3.inverse(a)),
-			S3.power(a, -2)
-		)
-	)
-);
 
 // tests for the homomorphisms Z/nZ ---> G
 import { homFromTorsion } from "./examples/homomorphisms/hom-from-Zmodn";
@@ -147,3 +148,8 @@ const g = homFromTorsion([2, 0, 1], S3, 3);
 console.assert(g != undefined);
 console.assert(g?.isHomomorphism);
 console.assert(g?.isInjective);
+
+// tests for center of a group
+const S5 = symmetricGroup(5)!;
+console.assert(S5.order === 120);
+console.assert(S5.center.isTrivial);

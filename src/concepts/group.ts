@@ -196,4 +196,11 @@ export class Group<X> implements GroupData<X> {
 			inverse: this.inverse,
 		});
 	}
+
+	get center(): Group<X> {
+		const elements = this.elements.filter((a) =>
+			this.elements.every((b) => this.isCommutingPair([a, b]))
+		);
+		return this.subgroupOfList(elements);
+	}
 }
