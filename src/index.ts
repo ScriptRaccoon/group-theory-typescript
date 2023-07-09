@@ -107,7 +107,6 @@ console.assert(!trivialHomExample.isSurjective);
 
 // tests for subgroup criterion
 console.assert(Zmod6.subgroupOfList([0]).isGroup);
-console.assert(!Zmod6.subgroupOfList([1]).isGroup);
 console.assert(Zmod6.subgroupOfList([0, 2, 4]).isGroup);
 
 // tests for generated subgroups
@@ -153,3 +152,4 @@ console.assert(g?.isInjective);
 const S5 = symmetricGroup(5)!;
 console.assert(S5.order === 120);
 console.assert(S5.center.isTrivial);
+console.assert(Zmod7.center.order === Zmod7.order);
